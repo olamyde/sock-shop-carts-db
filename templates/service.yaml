@@ -1,14 +1,16 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: carts-db
+  name: {{ template "sock-shop-carts.fullname" . }}
+  annotations:
+        prometheus.io/scrape: 'true'
   labels:
-    name: carts-db
+    name: sock-shop-carts
   namespace: sock-shop
 spec:
   ports:
-    # the port that this service should serve on
-  - port: 27017
-    targetPort: 27017
+    # the port that this service should serve onn
+  - port: 80
+    targetPort: 80
   selector:
-    name: carts-db
+    name: sock-shop-carts
